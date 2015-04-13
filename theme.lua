@@ -42,7 +42,7 @@ theme.menu_submenu_icon = "/usr/share/awesome/themes/default/submenu.png"
 theme.menu_height = 15
 theme.menu_width  = 100
 
--- theme.wallpaper = theme_dir .. "/akira_lowsat.png"
+theme.wallpaper = theme_dir .. "/pattern.png"
 
 --  Layout icons
 theme.layout_floating  = theme_dir .. "/icons/floating.png"
