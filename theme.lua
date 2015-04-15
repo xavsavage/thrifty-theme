@@ -8,15 +8,16 @@ theme.font          = "Tamsyn 10.5"
 
 -- Colors
 theme.bg_normal     = "#151617"
-theme.bg_focus      = "#686868"
-theme.bg_urgent     = "#b69094"
+theme.bg_focus      = theme.bg_normal
+theme.bg_urgent     = theme.bg_normal
+theme.fg_urgent     = "#9e6b71"
 theme.bg_systray    = theme.bg_normal
-theme.fg_normal     = "#cdcfce"
-theme.fg_focus      = theme.fg_normal
+theme.fg_normal     = "#686868"
+theme.fg_focus      = "#cdcfce"
 theme.fg_urgent     = theme.fg_normal
 
 -- Borders
-theme.border_width  = 0
+theme.border_width  = 2
 theme.border_normal = theme.bg_normal
 theme.border_focus  = theme.fg_focus
 --theme.border_focus  = "#cdcfce"
@@ -30,12 +31,13 @@ theme.titlebar_bg_focus = "#000000"
 
 -- Tasklist
 theme.tasklist_fg_focus = theme.fg_focus
+theme.tasklist_fg_normal = "#686868"
 theme.tasklist_bg_focus = theme.bg_focus
 theme.tasklist_disable_icon = true
 
 -- Gaps
-theme.useless_gap_width = 6
-theme.global_border_width = 3
+theme.useless_gap_width = 10
+theme.global_border_width = 0
 
 -- Menu
 theme.menu_submenu_icon = "/usr/share/awesome/themes/default/submenu.png"
