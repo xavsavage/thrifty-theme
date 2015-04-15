@@ -103,7 +103,7 @@ mylauncher = awful.widget.launcher({ menu = mymainmenu })
 
 --{{-- Time and Date Widget }} --
 tdwidget = wibox.widget.textbox()
-vicious.register(tdwidget, vicious.widgets.date, '<span color="#cdcfce" >%Y-%m-%d %H:%M</span>  ', 60)
+vicious.register(tdwidget, vicious.widgets.date, '<span color="' .. beautiful.fg_focus .. '" >%Y-%m-%d %H:%M</span>  ', 60)
 
 --{{ Battery Widget }} --
 baticon = wibox.widget.imagebox()
@@ -139,7 +139,7 @@ vicious.register( batwidget, vicious.widgets.bat, function(widget, args)
                              width = 250 })
         end
     end
-    return '<span color="#cdcfce" >' .. minutes .. 'm' .. args[1] .. args[2] .. '%</span>  '
+    return '<span color="' .. beautiful.fg_focus .. '" >' .. minutes .. 'm' .. args[1] .. args[2] .. '%</span>  '
 end, 60, "BAT0" )
 
 ----{{--| Volume / volume icon |----------
@@ -162,7 +162,7 @@ vicious.register(volumewidget, vicious.widgets.volume, function(widget, args)
     else
         volumeicon:set_image(beautiful.volno)
     end
-    return '<span color="#cdcfce" >' .. volume .. "%</span>  "
+    return '<span color="' .. beautiful.fg_focus .. '" >' .. volume .. "%</span>  "
 end, 60, "Master")
 
 --{{-- Wifi strength applet --}}--
@@ -179,7 +179,7 @@ vicious.register(wifiwidget, vicious.widgets.wifi, function(widget, args)
     else
         wifiicon:set_image(beautiful.netlow)
     end
-    return '<span color="#cdcfce" >' .. args["{linp}"] .. "%</span>  "
+    return '<span color="' .. beautiful.fg_focus .. '" >' .. args["{linp}"] .. "%</span>  "
 end, 60, "wlp2s0")
 
 --{{-- MPD widget --}}--
