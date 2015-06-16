@@ -9,12 +9,11 @@ theme.font          = "Tamsyn 10.5"
 -- Colors
 theme.bg_normal     = "#151617"
 theme.bg_focus      = theme.bg_normal
+theme.bg_systray    = theme.bg_normal
 theme.bg_urgent     = theme.bg_normal
 theme.fg_urgent     = "#9e6b71"
-theme.bg_systray    = theme.bg_normal
 theme.fg_normal     = "#686868"
 theme.fg_focus      = "#cdcfce"
-theme.fg_urgent     = theme.fg_normal
 
 -- Borders
 theme.border_width  = 2
