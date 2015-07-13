@@ -38,6 +38,9 @@ theme.tasklist_disable_icon = true
 theme.useless_gap_width = 10
 theme.global_border_width = 0
 
+-- Arch logo
+theme.arch_logo = theme_dir .. "/icons/archgs.png"
+
 -- Menu
 theme.menu_submenu_icon = "/usr/share/awesome/themes/default/submenu.png"
 theme.menu_height = 15
