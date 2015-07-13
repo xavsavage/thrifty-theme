@@ -43,7 +43,7 @@ beautiful.init(os.getenv("HOME") .. "/.config/awesome/themes/thrifty/theme.lua")
 terminal = "urxvt"
 editor = os.getenv("EDITOR") or "vim"
 editor_cmd = terminal .. " -e " .. editor
-browser = "firefox"
+browser = "chromium"
 
 font = "Tamsyn 10.5"
 
@@ -90,12 +90,17 @@ myawesomemenu = {
    { "quit", awesome.quit }
 }
 
-mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
-                                    { "open terminal", terminal }
+mymainmenu = awful.menu({ items = { { "Terminal", terminal },
+                                    { "Chromium", browser },
+                                    { "SpaceFM", "spacefm" },
+                                    { "Keepass", "keepass" },
+                                    { "music", terminal .. "-e ncmpcpp" },
+                                    { "Awesome", myawesomemenu, beautiful.awesome_icon }
                                   }
                         })
 
-mylauncher = awful.widget.launcher({ menu = mymainmenu })
+mylauncher = awful.widget.launcher({ image= beautiful.arch_logo,
+                                     menu = mymainmenu })
 
 -- }}}
 
@@ -283,15 +288,18 @@ for s = 1, screen.count() do
 
     -- Widgets that are aligned to the right
     local right_layout = wibox.layout.fixed.horizontal()
-    if s == 1 then right_layout:add(wibox.widget.systray()) end
     
-    right_layout:add(volumeicon)
-    right_layout:add(volumewidget)
-    right_layout:add(wifiicon)
-    right_layout:add(wifiwidget)
-    right_layout:add(baticon)
-    right_layout:add(batwidget)
-    right_layout:add(tdwidget)
+    -- Widgets on main screen
+    if s == 1 then
+        right_layout:add(volumeicon)
+        right_layout:add(volumewidget)
+        right_layout:add(wifiicon)
+        right_layout:add(wifiwidget)
+        right_layout:add(baticon)
+        right_layout:add(batwidget)
+        right_layout:add(tdwidget)
+    end
+
     right_layout:add(mylayoutbox[s])
 
     -- Now bring it all together (with the tasklist in the middle)
@@ -503,6 +511,21 @@ clientbuttons = awful.util.table.join(
     awful.button({ }, 1, function (c) client.focus = c; c:raise() end),
     awful.button({ modkey }, 1, awful.mouse.client.move),
     awful.button({ modkey }, 3, awful.mouse.client.resize))
+--[[    awful.button({ modkey }, 3, function(c)
+        local lay = awful.layout.get(c.screen)
+        if lay == lain.layout.coding
+            or lay == lain.layout.bottomrightwork
+            or lay == lain.layout.uselesstile
+        then
+            awful.mouse.client.resize(c)
+            --corner, x, y = awful.mouse.client.corner(c)
+            --capi.mouse.coords({ x = x, y = y })
+            --naughty.notify({text='corner:' .. corner .. ' mousex:' .. x .. ' mousey:' .. y})
+        else
+            awful.mouse.client.resize(c)
+        end
+        end))
+]]--
 
 -- Set keys
 root.keys(globalkeys)
@@ -525,10 +548,10 @@ awful.rules.rules = {
     { rule = { instance = "crx_nckgahadagoaajjgafhacjanaoiihapd" },
       type = dock,
       properties = { floating = true,
-                     focus = true } }
-    -- Set Firefox to always map on tags number 2 of screen 1.
-    -- { rule = { class = "Firefox" },
-    --   properties = { tag = tags[1][2] } },
+                     focus = true } },
+    -- Remove firefox borders
+     { rule = { class = "Firefox" },
+       properties = { border_width = 0 } },
 }
 -- }}}
 
@@ -554,6 +577,12 @@ client.connect_signal("manage", function (c, startup)
             awful.placement.no_offscreen(c)
         end
     end
+
+    client.connect_signal("property::maximized", function(c)
+        if c.class ~= "Firefox" then
+            c.border_width = c.maximized and 0 or beautiful.border_width
+        end
+    end)
 
     local titlebars_enabled = false
     if titlebars_enabled and (c.type == "normal" or c.type == "dialog") then
