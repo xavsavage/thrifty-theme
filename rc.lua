@@ -99,7 +99,7 @@ mymainmenu = awful.menu({ items = { { "Terminal", terminal },
                                   }
                         })
 
-mylauncher = awful.widget.launcher({ image= beautiful.arch_logo,
+mylauncher = awful.widget.launcher({ image= beautiful.menu_dropdown,
                                      menu = mymainmenu })
 
 -- }}}
